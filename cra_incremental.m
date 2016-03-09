@@ -8,12 +8,12 @@ function [r] = cra_incremental(rvect,mvect)
     r = rvect(1); % the residue
     
     for i = 2:k
-        [~,M_inv,~] = EGCD(M,mvec(i));
-        c = mod(M_inv,m(i));
-        rprime = mod(r,m(i));
-        s = mod(c*(r(i) - rprime),m(i));
+        [~,M_inv,~] = EGCD(M,mvect(i));
+        c = mod(M_inv,mvect(i));
+        rprime = mod(r,mvect(i));
+        s = mod(c*(rvect(i) - rprime),mvect(i));
         r = r+s*M;
-        M = M*m(i);
+        M = M*mvect(i);
         
     end
 end
